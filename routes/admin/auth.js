@@ -7,7 +7,6 @@ const signinTemplate = require('../../view/admin/auth/signin');
 const home = require('../../home');
 const createNote = require('../../create-note')
 const userDB = require('../../repositories/userDB');
-const mongoose = require('mongoose');
 
 
 
@@ -56,7 +55,7 @@ router.post(
     const { email } = req.body;
     const user = await userDB.findOne({ email:email });
     req.session.userId = user.id;
-    getName(user.id);
+    getName(user[0].id);
     res.redirect('../../home');
   }
 );
